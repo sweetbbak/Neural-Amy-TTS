@@ -22,6 +22,10 @@ _Examples_
 ![](/wavs/amy_v1.wav)
 ![](/wavs/amy_v2.wav)
 
+![](https://github.com/sweetbbak/Neural-Amy-TTS/blob/main/wavs/amy_neural.wav)
+![](https://github.com/sweetbbak/Neural-Amy-TTS/blob/main/wavs/amy_v1.wav)
+![](https://github.com/sweetbbak/Neural-Amy-TTS/blob/main/wavs/amy_v2.wav)
+
 # Quickstart / Install
 
 ```bash
