@@ -23,7 +23,10 @@ Use cases for Amy TTS:
 sudo pacman -S alsa-utils piper-tts
 git clone https://github.com/sweetbbak/Neural-Amy-TTS.git
 cd Neural-Amy-TTS
-./play.sh <text>
+./tts -t <text>
+# or
+./tts -v amy -t <text>
+
 ```
 
 Dependencies:

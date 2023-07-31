@@ -6,6 +6,7 @@ version=0.1.0
 PLAY="aplay -r 22050 -c 1 -f S16_LE -t raw"
 voices=(amy amy2 amy3)
 HERE=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+model="${HERE}/amy_v2/amy3.onnx"
 
 tts_from_file() {
     [ -f "$1" ] && text="$(perl -pe 's/[^[:ascii:]]//g' < "$1")"
@@ -31,6 +32,7 @@ print_help() {
 }
 
 set_voice() {
+    [ -n "$1" ] && unset model
     case "$1" in
         amy|Amy) model="${HERE}/amy_neural/amy.onnx" ;;
         amy2|Amy2) model="${HERE}/amy_v1/model.onnx" ;;
