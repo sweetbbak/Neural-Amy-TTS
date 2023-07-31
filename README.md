@@ -17,6 +17,11 @@ Use cases for Amy TTS:
 - Reading articles and online content at a fast speed
 - Accessiblity - integration with speech-dispatcher allows use with screen readers
 
+_Examples_
+![](/wavs/amy_neural.wav)
+![](/wavs/amy_v1.wav)
+![](/wavs/amy_v2.wav)
+
 # Quickstart / Install
 
 ```bash
