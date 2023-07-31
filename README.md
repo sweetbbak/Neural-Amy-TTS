@@ -9,6 +9,14 @@ speed, low resource consumption, and extensive compatibility, accompanied by a c
 voices designed for maximum listening comfort. This repository provides a comprehensive set of
 tools seamlessly adaptable to any purpose or workflow, prioritizing user-friendly integration above all else.
 
+Use cases for Amy TTS:
+
+- A home assistant
+- Integration with an AI model like Vicuna or ChatGPT
+- Creating and reading audiobooks
+- Reading articles and online content at a fast speed
+- Accessiblity - integration with speech-dispatcher allows use with screen readers
+
 # Quickstart / Install
 
 ```bash
@@ -23,8 +31,28 @@ Dependencies:
 - Piper-TTS
 - Alsa / aplay (optional but necessary for playing directly to speakers)
 
-refer to this link for more install instructions ![Piper Installation](https://github.com/rhasspy/piper#installation) if needed
+refer to this link for more in-depth install instructions ![Piper Installation](https://github.com/rhasspy/piper#installation).
 Piper supports a wide array of platforms, is light weight and can produce speech faster than real time.
+
+### huge thanks to piper-tts
+
+For a LONG time text to speech on Linux was a complete dissapointment. Accessibility tools tend to lag behind when it comes
+to Linux and it's quite sad. On top of that, AI seemed promising but it was largely overkill and far too slow to
+be practical for use with real world text-to-speech use cases... The existing TTS solutions were far too outdated and sounded
+like they came from an 80s or 90s movie. Even then some great software was created (like IVONA's amy tts for windows and android).
+They held the throne for the best TTS software from 2009 to almost now.
+
+They used what is known as Concatenative speech synthesis where
+you would turn a sentence (or utterance) into a string of phonemes and pull from a database of wav file using some AI-like decision tree
+logic to string together phonemes into spoken sound via wav files. Unfortunately this software is dying after being sold to Amaz\*n. The
+Android version isn't even supported on the Pixel 7 anymore and the Windows version is from the XP era...
+
+Piper uses an AI approach alongside a similar approach as this software. It results in a low overhead, high quality and faster than real time
+synthesis (meaning that the output wav file is being created faster than the length/play time of the output wav file). So an utterance that
+will result in a 1 minute wav file is being encoded and created in less than 1 minute. (generally 1.5x faster in my experience).
+
+It truly amazed me. It was refreshing after digging through every TTS software solution and every AI tts project for over a year.
+I have to give huge props to the people who put work into that project. We can finally say that TTS on Linux is no longer a joke.
 
 # Speech Dispatcher
 
@@ -41,4 +69,16 @@ DefaultModule piper-generic
 
 and restart speech-dispatcher using:
 
-> sudo systemctl restart speech-dispatcherd.service
+```bash
+sudo systemctl restart speech-dispatcherd.service
+spd-say "Hello world."
+```
+
+### TODO
+
+- add a flatpak
+- add a GUI
+- add a cross platform binary
+- add the ability to easily generate wav files
+- Improve integration into the desktop
+- make sure everything Just Works (tm)
