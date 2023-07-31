@@ -1,17 +1,49 @@
 #!/bin/bash
 # script to run the TTS models
+# set -x
+
+version=0.1.0
+PLAY="aplay -r 22050 -c 1 -f S16_LE -t raw"
+voices=(amy amy2 amy3)
+HERE=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 tts_from_file() {
     [ -f "$1" ] && text="$(perl -pe 's/[^[:ascii:]]//g' < "$1")"
     tts "${text}"
 }
 
+tts() {
+    echo "${@}" | piper-tts --output_raw --model "${model}" | $PLAY
+}
+
+show_version() {
+    echo -e "${0##*/} version ${version}"
+}
+
+print_help() {
+    echo -e "${0##*/}"
+    echo -e "-v\tset voice to be used ${voices[*]}"
+    echo -e "\t-l\tlist voices"
+    echo -e "\t-f\tinput file"
+    echo -e "\t-t\ttext"
+    echo -e "\t-r\trate"
+    echo -e "\t-h\tprint help"
+}
+
+set_voice() {
+    case "$1" in
+        amy|Amy) model="${HERE}/amy_neural/amy.onnx" ;;
+        amy2|Amy2) model="${HERE}/amy_v1/model.onnx" ;;
+        amy3|Amy3) model="${HERE}/amy_v2/amy3.onnx" ;;
+    esac
+}
+
 while [ $# -gt 0 ]; do
     case "$1" in
         -h|--help) print_help && exit 0 ;;
         -V|--version) show_version && exit 0 ;;
-        -v|--voice) shift && voice="${1}" ;;
-        -r|--rate) shift && balcon_opts+=("-s ${1}") ;;
+        -v|--voice) shift && set_voice "${1}" ;;
+        -r|--rate) shift && opts+=() ;;
         -f|--file) shift && tts_from_file "${1}" ; exit 0 ;;
         -t|--text) shift && tts "${@}" ; exit 0 ;;
         -s|--stdin) tts < <(cat /dev/stdin | perl -pe 's/[^[:ascii:]]//g') ; exit 0 ;;
