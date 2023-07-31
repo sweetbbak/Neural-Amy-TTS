@@ -1,0 +1,26 @@
+#!/bin/bash
+# script to run the TTS models
+
+tts_from_file() {
+    [ -f "$1" ] && text="$(perl -pe 's/[^[:ascii:]]//g' < "$1")"
+    tts "${text}"
+}
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -h|--help) print_help && exit 0 ;;
+        -V|--version) show_version && exit 0 ;;
+        -v|--voice) shift && voice="${1}" ;;
+        -r|--rate) shift && balcon_opts+=("-s ${1}") ;;
+        -f|--file) shift && tts_from_file "${1}" ; exit 0 ;;
+        -t|--text) shift && tts "${@}" ; exit 0 ;;
+        -s|--stdin) tts < <(cat /dev/stdin | perl -pe 's/[^[:ascii:]]//g') ; exit 0 ;;
+        -l|--list) printf "%s\n" "${voices[@]}" | gum choose ;;
+        -c|--cb)  tts < <(wl-paste | perl -pe 's/[^[:ascii:]]//g') ;;
+        -o|--output) shift && tts2file "${1}" "${2}" ;;
+        *)  print_help && exit ;;
+    esac
+    shift
+done
+
+
