@@ -22,7 +22,7 @@ _Examples_
 ![](/wavs/amy_v1.wav)
 ![](/wavs/amy_v2.wav)
 
-![amy neural](https://github.com/sweetbbak/Neural-Amy-TTS/blob/main/wavs/amy_neural.wav)
+![amy neural](https://github.com/sweetbbak/Neural-Amy-TTS/blob/main/wavs/amy-neural.wav)
 ![amy version 1](https://github.com/sweetbbak/Neural-Amy-TTS/blob/main/wavs/amy_v1.wav)
 ![amy version 2](https://github.com/sweetbbak/Neural-Amy-TTS/blob/main/wavs/amy_v2.wav)
 
