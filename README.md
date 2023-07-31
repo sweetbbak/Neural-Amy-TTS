@@ -9,15 +9,21 @@ speed, low resource consumption, and extensive compatibility, accompanied by a c
 voices designed for maximum listening comfort. This repository provides a comprehensive set of
 tools seamlessly adaptable to any purpose or workflow, prioritizing user-friendly integration above all else.
 
-- Quickstart / Install
+# Quickstart / Install
 
 ```bash
 sudo pacman -S alsa-utils piper-tts
 git clone https://github.com/sweetbbak/Neural-Amy-TTS.git
 cd Neural-Amy-TTS
+./play.sh <text>
 ```
 
-refer to ![Piper Installation](https://github.com/rhasspy/piper#installation) if needed
+Dependencies:
+
+- Piper-TTS
+- Alsa / aplay (optional but necessary for playing directly to speakers)
+
+refer to this link for more install instructions ![Piper Installation](https://github.com/rhasspy/piper#installation) if needed
 Piper supports a wide array of platforms, is light weight and can produce speech faster than real time.
 
 # Speech Dispatcher
