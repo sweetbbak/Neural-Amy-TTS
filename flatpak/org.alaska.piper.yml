@@ -1,0 +1,53 @@
+app-id: org.alaska.piper
+runtime: org.freedesktop.Platform
+runtime-version: '22.08'
+sdk: org.freedesktop.Sdk
+command: run.sh
+modules:
+  - name: piper
+    buildsystem: simple
+    build-commands:
+      - mv * /app/
+      - mkdir -p /app/bin
+      - ln -s /app/piper /app/bin/piper
+    sources:
+      - type: archive
+        url: https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.tar.gz
+        sha256: 467c17935d2a22dcce9dc9e08ba07485e29be813097e7cf08c5627aa09d32e42
+
+  - name: run.sh
+    sources:
+    - type: file
+      path: run.sh
+    buildsystem: simple
+    build-commands:
+      - install -m755 run.sh /app/bin/run.sh
+
+  - name: ivona
+    sources:
+    - type: file
+      path: amy.onnx
+      url: https://raw.githubusercontent.com/sweetbbak/Neural-Amy-TTS/main/models/ivona_tts/amy.onnx
+      sha256: 0c1d4d74dbba433deb99816334fa77824bb770c8544cbc0724e45583e90e6e3b
+    buildsystem: simple
+    build-commands:
+      - mkdir /app/ivona
+      - mv amy.onnx /app/ivona
+  - name: ivona2
+    sources:
+    - type: file
+      url: https://raw.githubusercontent.com/sweetbbak/Neural-Amy-TTS/main/models/ivona_tts/amy.onnx.json
+      sha256: f83744ff6aa6138ebade1357b65b3f8456bc00b9edb913ab78674eb323ca32d0
+      path: amy.onnx.json
+    buildsystem: simple
+    build-commands:
+      - mv amy.onnx.json /app/ivona
+
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --socket=wayland
+  - --filesystem=xdg-documents
+  - --filesystem=xdg-desktop
+  - --filesystem=xdg-music

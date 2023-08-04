@@ -38,10 +38,13 @@ cd Neural-Amy-TTS
 
 ```
 
+You can use alsa-utils to get "aplay" or install pulseaudio for "pacat"
+you need a tool that can play raw audio, 22050hz, 16bit little endian.
+
 Dependencies:
 
 - Piper-TTS
-- Alsa / aplay (optional but necessary for playing directly to speakers)
+- Alsa / aplay or Pulseaudio / pacat (optional but necessary for playing directly to speakers)
 
 refer to this link for more in-depth install instructions ![Piper Installation](https://github.com/rhasspy/piper#installation).
 Piper supports a wide array of platforms, is light weight and can produce speech faster than real time.
