@@ -64,8 +64,6 @@ Use cases for Amy TTS:
 - Accessiblity - integration with speech-dispatcher allows use with screen readers
 
 ![](https://user-images.githubusercontent.com/14821/36747828-56fe627e-1bf6-11e8-9bc1-7f4574e7228c.png)
-[![flatpak](https://user-images.githubusercontent.com/14821/36747828-56fe627e-1bf6-11e8-9bc1-7f4574e7228c.png)]()
-
 _Examples_
 ![](/wavs/amy_neural.wav)
 ![](/wavs/amy_v1.wav)
